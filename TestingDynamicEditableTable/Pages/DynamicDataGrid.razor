@@ -1,0 +1,70 @@
+﻿@page "/datagrid"
+
+<div class="row">
+    <div class="col">
+        @if (YoutubeAnalyticsList != null)
+        {
+            <h3>Youtube Analytics</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Subscribed</th>
+                        <th scope="col">Hours Watched</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Is Female</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var analytic in YoutubeAnalyticsList)
+                    {
+                        <tr>
+                            <td>@if (analytic.IsSubscribed){<p>Yes</p> }else{<p>No</p>}</td>
+                            <td>@analytic.WatchTimeHours</td>
+                            <td>@analytic.UserName</td>
+                            <td>@analytic.UserEmail</td>
+                            <td>@if (analytic.IsFemale) {<p>Yes</p> }else{<p>No</p>}</td>
+                        </tr>
+                    }
+
+            </tbody>
+           </table>
+        }
+
+    </div>
+
+    <div class="col">
+        @if (CarList != null)
+        {
+            <h3>Cars</h3>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">VIN</th>
+                        <th scope="col">Make</th>
+                        <th scope="col">Modal</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var car in CarList)
+                    {
+                        <tr>
+                            <td>@car.VinNumber</td>
+                            <td>@car.Make</td>
+                            <td>@car.Model</td>
+                            <td>@car.Price</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+
+
+</div>
+
+
+                        

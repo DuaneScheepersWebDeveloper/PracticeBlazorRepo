@@ -1,0 +1,30 @@
+﻿@* CustomAccordion.razor *@
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="@PanelStayOpenHeading">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@PanelStayOpenCollapse" aria-expanded="true" aria-controls="@PanelStayOpenCollapse">
+                @AccordionHeader
+            </button>
+        </h2>
+        <div id="@PanelStayOpenCollapse" class="accordion-collapse collapse show" aria-labelledby="@PanelStayOpenHeading">
+            <div class="accordion-body">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string AccordionHeader { get; set; }
+
+    [Parameter]
+    public string AccordionNumber { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public string PanelStayOpenHeading => $"panelsStayOpen-heading{AccordionNumber}";
+
+    public string PanelStayOpenCollapse => $"panelsStayOpen-collapse{AccordionNumber}";
+}

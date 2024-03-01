@@ -1,0 +1,87 @@
+﻿@page "/counter"
+@using TestingDynamicEditableTable.Data
+@using System.Collections.Generic
+@using System.Linq
+
+<RadzenDataGrid @ref="customersGrid" AllowPaging="true" PageSize="5" AllowSorting="true" EditMode="@editMode" AllowGrouping="true" AllowColumnResize="true"
+                Data="@customers" TItem="Customer" RowUpdate="@OnUpdateRow" ColumnWidth="200px">
+    <Columns>
+        <RadzenDataGridColumn TItem="Customer" Property="CustomerID" Title="ID" Width="40px" Frozen="true" />
+        <RadzenDataGridColumn TItem="Customer" Property="CompanyName" Title="Company Name" Width="280px">
+            <EditTemplate Context="customer">
+                <RadzenTextBox @bind-Value="customer.CompanyName" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="Customer" Property="ContactName" Title="Contact Name" Width="220px">
+            <EditTemplate Context="customer">
+                <RadzenTextBox @bind-Value="customer.ContactName" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="Customer" Context="customer" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Frozen="true" FrozenPosition="FrozenColumnPosition.Right">
+            <Template Context="customer">
+                <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => EditRow(customer))" @onclick:stopPropagation="true">
+                </RadzenButton>
+                <RadzenButton Icon="delete" ButtonStyle="ButtonStyle.Danger" Variant="Variant.Flat" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@(args => DeleteRow(customer))">
+                </RadzenButton>
+            </Template>
+            <EditTemplate Context="customer">
+                <RadzenButton Icon="save" ButtonStyle="ButtonStyle.Success" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@((args) => SaveRow(customer))">
+                </RadzenButton>
+                <RadzenButton Icon="cancel" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@((args) => CancelEdit(customer))">
+                </RadzenButton>
+            </EditTemplate>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+<RadzenButton Text="Add New Customer" Click="AddNewCustomer" />
+
+@code {
+    RadzenDataGrid<Customer> customersGrid;
+    List<Customer> customers;
+    DataGridEditMode editMode = DataGridEditMode.Single;
+
+    Customer editingCustomer;
+
+    protected override void OnInitialized()
+    {
+        customers = DummyData.GetCustomers().ToList();
+    }
+
+    void EditRow(Customer customer)
+    {
+        editingCustomer = customer;
+        customersGrid.EditRow(customer);
+    }
+
+    void OnUpdateRow(Customer customer)
+    {
+        // Implement logic to update the customer data
+        editingCustomer = null;
+    }
+
+    void SaveRow(Customer customer)
+    {
+        customersGrid.UpdateRow(customer);
+    }
+
+    void CancelEdit(Customer customer)
+    {
+        editingCustomer = null;
+        customersGrid.CancelEditRow(customer);
+    }
+
+    void AddNewCustomer()
+    {
+        var newCustomer = new Customer();
+        customers.Add(newCustomer);
+        customersGrid.InsertRow(newCustomer);
+    }
+
+    void DeleteRow(Customer customer)
+    {
+        customers.Remove(customer);
+        customersGrid.Reload(); // Reload the grid to reflect the changes
+    }
+}

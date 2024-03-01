@@ -1,0 +1,145 @@
+﻿@page "/"
+@page "/uploadfile"
+@inject IConfiguration config
+
+@*
+<TestingDynamicEditableTable.Components.CustomBootstrapAccordion AccordionNumber="One" AccordionHeader="Test 1">
+    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+</TestingDynamicEditableTable.Components.CustomBootstrapAccordion>
+<TestingDynamicEditableTable.Components.CustomBootstrapAccordion AccordionNumber="Two" AccordionHeader="Test 2">
+    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+</TestingDynamicEditableTable.Components.CustomBootstrapAccordion>
+*@
+
+<h2>Upload File</h2>
+
+<EditForm Model="newCustomer" OnValidSubmit="SubmitForm">
+    <div>
+        <label for="firstName">First Name</label>
+        <InputText id="firstName" @bind-Value="newCustomer.FirstName" class="form-control" />
+    </div>
+
+    <div>
+        <label for="lastName">Last Name</label>
+        <InputText id="lastName" class="form-control" @bind-Value="newCustomer.LastName" />
+    </div>
+
+    <div>
+        <label for="profilePicture">Profile Picture</label>
+        <InputFile OnChange="(e) => LoadFiles(e)" multiple class="form-control" />
+    </div>
+
+    <button Class="btn btn-primary mt-3" type="submit">Create Customer</button>
+</EditForm>
+
+@if (errors.Count > 0)
+{
+    <h2>Errors</h2>
+    <ul class="text-red">
+        @foreach (var error in errors)
+        {
+            <li>@error</li>
+        }
+    </ul>
+}
+
+@if (uploadedFiles.Any())
+{
+    <h2>Uploaded Files</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>File Size (bytes)</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in uploadedFiles)
+            {
+                <tr>
+                    <td>@file.FileName</td>
+                    <td>@file.FileSize</td>
+                    <td><a href="@file.FilePath" download>Download</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private long maxFileSize = 1024 * 1024 * 3; // represents 3MB
+    private int maxAllowedFiles = 3;
+    private List<string> errors = new();
+    private CustomerModel newCustomer = new();
+    private IBrowserFile? file;
+    private List<UploadedFileModel> uploadedFiles = new List<UploadedFileModel>();
+
+    private async Task SubmitForm()
+    {
+        try
+        {
+            string relativePath = await CaptureFile();
+            newCustomer.FileName = relativePath;
+
+            // Get the full file path
+            string fullPath = Path.Combine(config.GetValue<string>("FileStorage")!, "Uploaded", Path.GetFileName(relativePath));
+
+            // Create a new FileInfo object with the full file path
+            System.IO.FileInfo fileInfo = new System.IO.FileInfo(fullPath);
+
+            uploadedFiles.Add(new UploadedFileModel
+                {
+                    FileName = Path.GetFileName(relativePath),
+                    FileSize = fileInfo.Length,
+                    FilePath = relativePath
+                });
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"Error: {ex.Message}");
+        }
+    }
+
+
+    private async Task<string> CaptureFile()
+    {
+        if (file is null)
+        {
+            return "";
+        }
+        try
+        {
+            string newFileName = Path.ChangeExtension(
+                Path.GetRandomFileName(),
+                Path.GetExtension(file.Name));
+            string path = Path.Combine(
+                config.GetValue<string>("FileStorage")!, "Uploaded", newFileName);
+            string relativePath = Path.Combine("Uploaded", newFileName);
+            Directory.CreateDirectory(Path.Combine(
+                config.GetValue<string>("FileStorage")!,
+                "Uploaded"));
+            await using FileStream fs = new(path, FileMode.Create);
+            await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+            return relativePath;
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"Error: {ex.Message}");
+            throw;
+        }
+    }
+
+    private void LoadFiles(InputFileChangeEventArgs e)
+    {
+        file = e.File;
+    }
+
+    public class UploadedFileModel
+    {
+        public string FileName { get; set; }
+        public long FileSize { get; set; }
+        public string FilePath { get; set; }
+    }
+}
+

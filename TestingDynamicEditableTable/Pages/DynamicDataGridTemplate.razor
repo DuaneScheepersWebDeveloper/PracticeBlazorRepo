@@ -1,0 +1,69 @@
+﻿@page "/datagridtemplate"
+
+<div class="row">
+    <div class="col">
+        @if (YoutubeAnalyticsList != null)
+        {
+            <h3>Youtube Analytics</h3>
+            <ReusableGrid GridName="Youtube Analytics Template" Items=YoutubeAnalyticsList>
+                <Header>
+                <th scope="col">Subscribed</th>
+                <th scope="col">Hours Watched</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Is Female</th>
+                </Header>
+                <Row>
+                    <td>
+                        @if (context.IsSubscribed)
+                        {
+                            <p>Yes</p>
+                        }
+                        else
+                        {
+                            <p>No</p>
+                        }</td>
+                    <td>@context.WatchTimeHours</td>
+                    <td>@context.UserName</td>
+                    <td>@context.UserEmail</td>
+                    <td>
+                        @if (context.IsFemale)
+                        {
+                            <p>Yes</p>
+                        }
+                        else
+                        {
+                            <p>No</p>
+                        }</td>
+                </Row>
+            </ReusableGrid>
+        }
+    </div>
+
+    <div class="col">
+        @if (CarList != null)
+        {
+        <ReusableGrid GridName="Car List 2" Items="CarList">
+            <Header>
+                <th scope="col">Vin</th>
+                <th scope="col">Make</th>
+                <th scope="col">Model</th>
+                <th scope="col">Price</th>
+
+            </Header>
+            <Row>
+                <td>@context.VinNumber</td>
+                       <td>@context.Make</td>
+                    <td>@context.Model</td>
+                    <td>@context.Price</td>
+            </Row>
+        </ReusableGrid>
+        }
+
+    </div>
+
+
+</div>
+
+
+                        

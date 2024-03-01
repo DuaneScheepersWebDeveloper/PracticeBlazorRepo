@@ -130,10 +130,47 @@
         }
     }
 
-    private void LoadFiles(InputFileChangeEventArgs e)
+    private async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        file = e.File;
+        try
+        {
+            errors.Clear();
+            if (e.FileCount > maxAllowedFiles)
+            {
+                errors.Add($"Error: Attempting to upload {e.FileCount} files, but only {maxAllowedFiles} files are allowed");
+                return;
+            }
+
+            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            {
+                string newFileName = Path.ChangeExtension(
+                    Path.GetRandomFileName(),
+                    Path.GetExtension(file.Name));
+
+                string path = Path.Combine(
+                    config.GetValue<string>("FileStorage")!, "Uploaded", newFileName);
+
+                Directory.CreateDirectory(Path.Combine(
+                    config.GetValue<string>("FileStorage")!,
+                    "Uploaded"));
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+
+                // Add the uploaded file to the list
+                uploadedFiles.Add(new UploadedFileModel
+                    {
+                        FileName = newFileName,
+                        FileSize = file.Size,
+                        FilePath = path
+                    });
+            }
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"Error: {ex.Message}");
+        }
     }
+
 
     public class UploadedFileModel
     {
@@ -142,4 +179,3 @@
         public string FilePath { get; set; }
     }
 }
-

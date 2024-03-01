@@ -9,63 +9,63 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TestingDynamicEditableTable
 build_property.RootNamespace = TestingDynamicEditableTable
-build_property.ProjectDir = D:\etc\Practice\TestingDynamicEditableTable\TestingDynamicEditableTable\
+build_property.ProjectDir = E:\My github files\PracticeBlazorRepo\TestingDynamicEditableTable\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\etc\Practice\TestingDynamicEditableTable\TestingDynamicEditableTable
+build_property.MSBuildProjectDirectory = E:\My github files\PracticeBlazorRepo\TestingDynamicEditableTable
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/App.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Components/CustomBootstrapAccordion.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Components/CustomBootstrapAccordion.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21Cb290c3RyYXBBY2NvcmRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/Counter.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/DynamicDataGrid.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/DynamicDataGrid.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHluYW1pY0RhdGFHcmlkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/DynamicDataGridTemplate.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/DynamicDataGridTemplate.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHluYW1pY0RhdGFHcmlkVGVtcGxhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/FetchData.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/Index.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/ReusableGrid.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/ReusableGrid.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmV1c2FibGVHcmlkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Shared/MainLayout.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Shared/SurveyPrompt.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/_Imports.razor]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/Error.cshtml]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/etc/Practice/TestingDynamicEditableTable/TestingDynamicEditableTable/Pages/_Host.cshtml]
+[E:/My github files/PracticeBlazorRepo/TestingDynamicEditableTable/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

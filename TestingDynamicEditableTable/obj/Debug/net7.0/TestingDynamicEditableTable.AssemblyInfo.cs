@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestingDynamicEditableTable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f28807d3f7fea59684413a950e56d08c481feb38")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestingDynamicEditableTable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestingDynamicEditableTable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
